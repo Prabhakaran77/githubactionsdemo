@@ -1,26 +1,28 @@
-name: Continous Integration
+name: CI
 
 on:
  push:
-  branches: [main]
-
-  
-  
-workflow_dispatch:
-
+  branches:
+   - main
+ pull_request:
+  branches:
+   - main
 
 jobs:
-  build:
-   runs-on: ubuntu-latest
-   
-   steps:
-    - uses: actions/checkout@v3
+ build:
+  runs-on: ubuntu-latest
 
-    - name: Run a one-line script
-      run: echo Hello, World!
+  steps:
+   - name: Checkout repository
+     uses: actions/checkout@v2
 
+   - name: Set up JDK
+     uses: actions/setup-java@v2
+     with:
+      java-version: '11'
 
+   - name: Build and Test
+     run: |
+      ./gradlew build --info
+      ./gradlew test
 
-
-
-   
