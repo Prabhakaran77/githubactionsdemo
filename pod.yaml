@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1
+kind: pod
+metadata:
+  name: demo-kotlinapp
+  labels:
+    role: webapp
+spec:
+  containers:
+    - name: web
+      image: prabha777/demo-kotlincreatedbyprabha
+      ports:
+      - containerPort : 83
+        name: web
+        protocaol: TCP
+
